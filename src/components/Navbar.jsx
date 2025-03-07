@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import ToggleButton from "./common/ToggleButton";
 
 const Navbar = () => {
   return (
@@ -6,6 +7,7 @@ const Navbar = () => {
       <Link to="/">
         <span>My Movie</span>
       </Link>
+      <ToggleButton />
     </nav>
   );
 };
