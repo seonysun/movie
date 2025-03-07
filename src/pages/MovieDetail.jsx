@@ -8,21 +8,32 @@ const MovieDetail = () => {
   const [movie] = useState(movieDetailData);
 
   return (
-    <section className="pt-8 px-16">
+    <main className="py-8 px-16 text-white">
+      <img
+        src={`${IMG_URL}original${movie.backdrop_path}`}
+        alt="background image"
+        className="absolute left-0 blur -z-10"
+      />
       <div className="mb-3 pb-2 border-b">
-        <div className="text-2xl font-semibold">{movie.title}</div>
-        <div className="flex justify-between">
+        <div className="text-4xl font-semibold">{movie.title}</div>
+        <div className="text-lg flex justify-between">
           <span>{movie.tagline}</span>
-          <span className="font-medium">⭐️ {movie.vote_average}</span>
+          <span className="font-medium">
+            ⭐️ {movie.vote_average.toFixed(2)}
+          </span>
         </div>
       </div>
       <div className="flex gap-5">
-        <img src={`${IMG_URL}w300${movie.poster_path}`} />
+        <img
+          src={`${IMG_URL}original${movie.poster_path}`}
+          alt={movie.title}
+          className="w-1/2"
+        />
         <div className="flex flex-col gap-3">
-          <p>개봉일자 : {movie.release_date}</p>
-          <ul className="flex gap-2">
+          <p className="text-lg">🍿 개봉 : {movie.release_date}</p>
+          <ul className="flex gap-2 text-black">
             {movie.genres.map((genre) => (
-              <li className="rounded-lg px-2 py-1 bg-yellow-200 dark:bg-yellow-600">
+              <li className="rounded-lg px-2 py-1 bg-yellow-200 hover:bg-yellow-400 ">
                 {genre.name}
               </li>
             ))}
@@ -30,7 +41,7 @@ const MovieDetail = () => {
           <p className="text-justify">{movie.overview}</p>
         </div>
       </div>
-    </section>
+    </main>
   );
 };
 

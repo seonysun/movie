@@ -5,15 +5,15 @@ const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
 
   return (
-    <li className="border" onClick={() => navigate(`/details/${movie.id}`)}>
+    <li onClick={() => navigate(`/details/${movie.id}`)}>
       <img
         src={`${IMG_URL}w200${movie.poster_path}`}
         alt={movie.title}
-        className="w-[200px] h-[300px]"
+        className="w-[200px] h-[300px] transition-transform duration-300 hover:scale-105"
       />
       <div className="p-2">
         <p>{movie.title}</p>
-        <p className="text-end">⭐️ {movie.vote_average}</p>
+        <p className="text-end">⭐️ {movie.vote_average.toFixed(2)}</p>
       </div>
     </li>
   );
