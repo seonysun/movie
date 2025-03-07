@@ -8,13 +8,13 @@ const MovieDetail = () => {
   const [movie] = useState(movieDetailData);
 
   return (
-    <main className="py-8 px-16 text-white">
+    <main className="pb-8 px-16 text-white">
       <img
         src={`${IMG_URL}original${movie.backdrop_path}`}
         alt="background image"
         className="absolute left-0 blur -z-10"
       />
-      <div className="mb-3 pb-2 border-b">
+      <div className="mb-3 pt-8 pb-2 border-b">
         <div className="text-4xl font-semibold">{movie.title}</div>
         <div className="text-lg flex justify-between">
           <span>{movie.tagline}</span>
