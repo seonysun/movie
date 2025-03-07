@@ -6,7 +6,7 @@ const Home = () => {
   const [movieData] = useState(movieListData);
 
   return (
-    <ul className="flex flex-wrap justify-center gap-3">
+    <ul className="flex flex-wrap mt-4 justify-center gap-3">
       {movieData.results.map((movie) => (
         <MovieCard key={movie.id} movie={movie} />
       ))}

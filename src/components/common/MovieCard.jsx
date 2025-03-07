@@ -1,5 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { IMG_URL } from "../../constants/config.js";
 
 const MovieCard = ({ movie }) => {
   const navigate = useNavigate();
@@ -7,7 +7,7 @@ const MovieCard = ({ movie }) => {
   return (
     <li className="border" onClick={() => navigate(`/details/${movie.id}`)}>
       <img
-        src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+        src={`${IMG_URL}w200${movie.poster_path}`}
         alt={movie.title}
         className="w-[200px] h-[300px]"
       />
