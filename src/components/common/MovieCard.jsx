@@ -11,8 +11,8 @@ const MovieCard = ({ movie }) => {
         alt={movie.title}
         className="w-[200px] h-[300px] transition-transform duration-300 hover:scale-105"
       />
-      <div className="p-2">
-        <p>{movie.title}</p>
+      <div className="p-2 font-semibold">
+        <p className="text-md ">{movie.title}</p>
         <p className="text-end">⭐️ {movie.vote_average.toFixed(2)}</p>
       </div>
     </li>
