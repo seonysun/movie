@@ -1,19 +1,16 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 
 function App() {
   return (
-    <>
-      <nav className="flex gap-3">
-        <Link to="/">홈</Link>
-        <Link to="/details">상세페이지</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/details" element={<MovieDetail />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="/details/:id" element={<MovieDetail />} />
+      </Route>
+    </Routes>
   );
 }
 

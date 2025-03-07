@@ -1,7 +1,17 @@
-import React from "react";
+import { useState } from "react";
+import MovieCard from "../components/common/MovieCard";
+import movieListData from "../assets/movieListData.json";
 
 const Home = () => {
-  return <div>Home</div>;
+  const [movieData] = useState(movieListData);
+
+  return (
+    <ul className="flex flex-wrap mt-4 justify-center gap-3">
+      {movieData.results.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </ul>
+  );
 };
 
 export default Home;
