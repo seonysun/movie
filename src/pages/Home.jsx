@@ -1,16 +1,27 @@
-import { useState } from "react";
 import MovieCard from "../components/common/MovieCard";
+import CardFallback from "../components/common/CardFallback";
 import MovieSwipe from "../components/common/MovieSwipe";
-import movieListData from "../assets/movieListData.json";
+import useFetch from "../hooks/useFetch";
+
+const MOVIE_TOP_RATED = "top_rated?language=ko";
+const MOVIE_POPULAR = "popular?language=ko";
 
 const Home = () => {
-  const [movieList] = useState(movieListData);
+  const { data: topData, loading: topLoading } = useFetch(MOVIE_TOP_RATED);
+  const topMovieList = topData?.results || [];
+
+  const { data: popularData, loading: popularLoading } =
+    useFetch(MOVIE_POPULAR);
+  const popularMovieList =
+    popularData?.results.filter((el) => el.adult === false) || [];
+
+  if (topLoading || popularLoading) return <CardFallback num={12} />;
 
   return (
     <>
-      <MovieSwipe movieList={movieList} />
+      <MovieSwipe movieList={topMovieList} />
       <ul className="flex flex-wrap mt-4 justify-center gap-4">
-        {movieList.results.map((movie) => (
+        {popularMovieList.map((movie) => (
           <MovieCard key={movie.id} movie={movie} />
         ))}
       </ul>

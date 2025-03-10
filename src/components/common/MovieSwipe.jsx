@@ -16,10 +16,10 @@ const MovieSwipe = ({ movieList }) => {
       navigation
       pagination={{ clickable: true }}
     >
-      {movieList.results.map((movie) => (
+      {movieList.map((movie) => (
         <SwiperSlide key={movie.id}>
           <img
-            src={`${IMG_URL}original${movie.poster_path}`}
+            src={`${IMG_URL}original${movie.backdrop_path}`}
             alt={movie.title}
             className="w-full h-[500px] object-cover"
           />
