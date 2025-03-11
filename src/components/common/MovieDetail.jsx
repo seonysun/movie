@@ -1,7 +1,10 @@
+import useResize from "../../hooks/useResize";
 import { IMG_URL } from "../../constants/config.js";
 import FavoriteButton from "./FavoriteButton.jsx";
 
 const MovieDetail = ({ movie }) => {
+  const isMobile = useResize();
+
   return (
     <section>
       <div className="mb-3 pt-8 pb-2 border-b">
@@ -16,11 +19,11 @@ const MovieDetail = ({ movie }) => {
           </span>
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className={`flex gap-5 ${isMobile ? "flex-col" : ""}`}>
         <img
           src={`${IMG_URL}original${movie.poster_path}`}
           alt={movie.title}
-          className="w-1/2"
+          className={isMobile ? "w-full" : "w-1/2"}
         />
         <div className="flex flex-col gap-3">
           <p className="text-lg font-semibold">🍿 {movie.release_date}</p>
