@@ -1,8 +1,9 @@
+import { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../../constants/config.js";
 import FavoriteButton from "./FavoriteButton.jsx";
 
-const MovieCard = ({ movie }) => {
+const MovieCard = memo(({ movie }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,11 +25,11 @@ const MovieCard = ({ movie }) => {
         보러가기
       </div>
       <div className="p-2">
-        <p className="text-md font-semibold">{movie.title}</p>
-        <p className="text-end">⭐️ {movie.vote_average.toFixed(2)}</p>
+        <p className="text-xl font-semibold">{movie.title}</p>
+        <p className="text-end text-lg">⭐️ {movie.vote_average.toFixed(2)}</p>
       </div>
     </li>
   );
-};
+});
 
 export default MovieCard;

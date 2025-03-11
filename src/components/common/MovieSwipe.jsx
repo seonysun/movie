@@ -1,22 +1,31 @@
 import { IMG_URL } from "../../constants/config";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "swiper/css/autoplay";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
-const MovieSwipe = ({ movieList }) => {
+const MovieSwipe = () => {
   const navigate = useNavigate();
+
+  const { data } = useFetch("movie/top_rated");
 
   return (
     <Swiper
-      modules={[Navigation, Pagination]}
+      modules={[Navigation, Pagination, Autoplay]}
       spaceBetween={30}
       navigation
       pagination={{ clickable: true }}
+      autoplay={{
+        delay: 2000,
+        disableOnInteraction: false,
+        enabled: true,
+      }}
     >
-      {movieList.map((movie) => (
+      {data.results?.map((movie) => (
         <SwiperSlide key={movie.id}>
           <img
             src={`${IMG_URL}original${movie.backdrop_path}`}
