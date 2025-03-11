@@ -2,21 +2,20 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API_URL } from "../constants/config";
 
+export const options = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
+  },
+  params: {
+    language: "ko",
+  },
+};
+
 const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_KEY}`,
-    },
-    params: {
-      language: "ko",
-      page: 1,
-    },
-  };
 
   useEffect(() => {
     setLoading(true);

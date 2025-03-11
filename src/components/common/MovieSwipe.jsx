@@ -6,9 +6,12 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import { useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/useFetch";
 
-const MovieSwipe = ({ movieList }) => {
+const MovieSwipe = () => {
   const navigate = useNavigate();
+
+  const { data } = useFetch("movie/top_rated");
 
   return (
     <Swiper
@@ -22,7 +25,7 @@ const MovieSwipe = ({ movieList }) => {
         enabled: true,
       }}
     >
-      {movieList?.map((movie) => (
+      {data.results?.map((movie) => (
         <SwiperSlide key={movie.id}>
           <img
             src={`${IMG_URL}original${movie.backdrop_path}`}

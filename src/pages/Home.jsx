@@ -4,17 +4,15 @@ import MovieSwipe from "../components/common/MovieSwipe";
 import useFetch from "../hooks/useFetch";
 
 const Home = () => {
-  const { data: topData, loading: topLoading } = useFetch("movie/top_rated");
-  const { data: popularData, loading: popularLoading } =
-    useFetch("movie/popular");
+  const { data, loading } = useFetch("movie/popular");
 
-  if (topLoading || popularLoading) return <CardFallback num={12} />;
+  if (loading) return <CardFallback num={12} />;
 
   return (
     <>
-      <MovieSwipe movieList={topData.results} />
+      <MovieSwipe />
       <ul className="flex flex-wrap mt-4 justify-center gap-4">
-        {popularData.results
+        {data.results
           ?.filter((el) => el.adult === false)
           .map((movie) => (
             <MovieCard key={movie.id} movie={movie} />
