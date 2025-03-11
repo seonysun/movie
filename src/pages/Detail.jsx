@@ -6,9 +6,9 @@ import DetailFallback from "../components/common/DetailFallback.jsx";
 
 const Detail = () => {
   const selectedId = useParams().id;
-  const { data = {}, loading } = useFetch(`${selectedId}?language=ko`);
+  const { data = {}, loading } = useFetch(`movie/${selectedId}`);
 
-  if (!data || loading) return <DetailFallback />;
+  if (Object.keys(data).length === 0 || loading) return <DetailFallback />;
 
   return (
     <main className="pb-8 px-16 text-white">
