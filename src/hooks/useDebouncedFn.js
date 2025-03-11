@@ -8,17 +8,20 @@ const useDebouncedFn = (callback, delay) => {
     callbackRef.current = callback;
   }, [callback]);
 
-  const debouncedFunction = useCallback(() => {
-    if (timerRef.current) {
-      clearTimeout(timerRef.current); // 이전 타이머를 정리
-    }
-
-    timerRef.current = setTimeout(() => {
-      if (callbackRef.current) {
-        callbackRef.current();
+  const debouncedFunction = useCallback(
+    (...args) => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current); // 이전 타이머를 정리
       }
-    }, delay);
-  }, [delay]);
+
+      timerRef.current = setTimeout(() => {
+        if (callbackRef.current) {
+          callbackRef.current(...args);
+        }
+      }, delay);
+    },
+    [delay]
+  );
 
   return debouncedFunction;
 };
