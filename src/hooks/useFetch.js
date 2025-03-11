@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../constants/config";
 
 const useFetch = (url) => {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const options = {
@@ -14,6 +14,7 @@ const useFetch = (url) => {
     },
     params: {
       language: "ko",
+      page: 1,
     },
   };
 
