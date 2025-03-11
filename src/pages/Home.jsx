@@ -3,8 +3,8 @@ import CardFallback from "../components/common/CardFallback";
 import MovieSwipe from "../components/common/MovieSwipe";
 import useFetch from "../hooks/useFetch";
 
-const MOVIE_TOP_RATED = "top_rated?language=ko";
-const MOVIE_POPULAR = "popular?language=ko";
+const MOVIE_TOP_RATED = "top_rated";
+const MOVIE_POPULAR = "popular";
 
 const Home = () => {
   const { data: topData, loading: topLoading } = useFetch(MOVIE_TOP_RATED);
