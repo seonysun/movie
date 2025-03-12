@@ -24,7 +24,7 @@ const Navbar = () => {
         </div>
       </header>
       {isSearchOpen && (
-        <div className="absolute left-0 overflow-x-auto min-w-full max-w-full p-4 z-50 bg-white dark:bg-dark-main">
+        <div className="absolute left-0 overflow-x-auto min-w-full max-w-full p-4 z-50 backdrop-blur-md">
           <SearchBar
             setIsSearchOpen={setIsSearchOpen}
             inputValue={inputValue}
