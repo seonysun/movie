@@ -22,7 +22,7 @@ const SearchBar = ({ inputValue, setInputValue, setIsSearchOpen }) => {
   }, [debouncedInput]);
 
   return (
-    <ul className="flex justify-center gap-2">
+    <ul className="flex gap-2">
       {data.results?.length > 0 ? (
         data.results
           .filter((el) => el.adult === false)
@@ -34,9 +34,9 @@ const SearchBar = ({ inputValue, setInputValue, setIsSearchOpen }) => {
                 setInputValue("");
                 setIsSearchOpen(false);
               }}
-              className="cursor-pointer w-32"
+              className="cursor-pointer w-32 flex-shrink-0"
             >
-              <div className="overflow-hidden rounded-lg">
+              <div className="overflow-hidden w-full rounded-lg">
                 <img
                   src={`${IMG_URL}original${movie.poster_path}`}
                   alt={movie.title}
