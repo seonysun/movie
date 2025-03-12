@@ -4,7 +4,7 @@ import useTheme from "../../hooks/useTheme";
 function ToggleButton() {
   const { theme, toggleTheme } = useTheme();
 
-  const [isOn, setIsOn] = useState(theme === "dark" ? true : false);
+  const [isOn, setIsOn] = useState(theme === "dark");
 
   useEffect(() => {
     document.documentElement.classList[theme === "dark" ? "add" : "remove"](
