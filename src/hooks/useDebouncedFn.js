@@ -11,7 +11,7 @@ const useDebouncedFn = (callback, delay) => {
   const debouncedFunction = useCallback(
     (...args) => {
       if (timerRef.current) {
-        clearTimeout(timerRef.current); // 이전 타이머를 정리
+        clearTimeout(timerRef.current);
       }
 
       timerRef.current = setTimeout(() => {

@@ -1,8 +1,9 @@
+import { memo } from "react";
 import useResize from "../../hooks/useResize";
 import { IMG_URL } from "../../constants/config.js";
 import FavoriteButton from "./FavoriteButton.jsx";
 
-const MovieDetail = ({ movie }) => {
+const MovieDetail = memo(({ movie }) => {
   const isMobile = useResize();
 
   return (
@@ -42,6 +43,6 @@ const MovieDetail = ({ movie }) => {
       </div>
     </section>
   );
-};
+});
 
 export default MovieDetail;
