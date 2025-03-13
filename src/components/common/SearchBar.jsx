@@ -29,7 +29,7 @@ const SearchBar = ({ inputValue, setInputValue, setIsSearchOpen }) => {
           .map((movie) => (
             <li
               key={movie.id}
-              onClick={() => {
+              onMouseDown={() => {
                 navigate(`/details/${movie.id}`);
                 setInputValue("");
                 setIsSearchOpen(false);

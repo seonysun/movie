@@ -34,7 +34,7 @@ function SearchInput({
           setInputValue(e.target.value);
           setIsSearchOpen(e.target.value.trim() !== "");
         }}
-        onBlur={() => setIsSearchOpen((prev) => !prev)}
+        onBlur={() => setIsSearchOpen(false)}
       />
     </form>
   );
