@@ -3,13 +3,26 @@ import ToggleButton from "./common/ToggleButton";
 import SearchInput from "./common/SearchInput";
 import SearchBar from "./common/SearchBar";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { modalSlice } from "../redux/modalSlice";
+import SideModal from "./SideModal";
+import { Like } from "../assets/icons";
 
 const Navbar = () => {
   const [inputValue, setInputValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
+  const dispatch = useDispatch();
+  const { isOpen, modalType, modalProps } = useSelector((state) => state.modal);
+
   return (
     <>
+      {isOpen && modalType === "side" && (
+        <SideModal
+          setIsOpen={() => dispatch(modalSlice.actions.closeModal())}
+          {...modalProps}
+        />
+      )}
       <header className="flex justify-between items-center p-4 h-[88px]">
         <Link to="/">
           <span className="text-4xl font-semibold">My Movie</span>
@@ -19,6 +32,21 @@ const Navbar = () => {
             setIsSearchOpen={setIsSearchOpen}
             inputValue={inputValue}
             setInputValue={setInputValue}
+          />
+          <img
+            src={Like}
+            onClick={() =>
+              dispatch(
+                modalSlice.actions.openModal({
+                  modalType: "side",
+                  modalProps: {
+                    title: "찜한 영화 목록",
+                    direction: "right",
+                    // itemList: likeList,
+                  },
+                })
+              )
+            }
           />
           <ToggleButton />
         </div>
