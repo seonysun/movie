@@ -6,14 +6,17 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
 import App from "./App.jsx";
 import "./index.css";
+import { SupabaseProvider } from "./supabase/context/index.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <SupabaseProvider>
+          <Provider store={store}>
+            <App />
+          </Provider>
+        </SupabaseProvider>
       </ThemeProvider>
     </BrowserRouter>
   </StrictMode>

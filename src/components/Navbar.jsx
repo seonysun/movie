@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ToggleButton from "./common/ToggleButton";
 import SearchInput from "./common/SearchInput";
 import SearchBar from "./common/SearchBar";
@@ -6,14 +6,19 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { modalSlice } from "../redux/modalSlice";
 import SideModal from "./SideModal";
-import { Like } from "../assets/icons";
+import useResize from "../hooks/useResize";
+import { User, Like } from "../assets/icons";
 
 const Navbar = () => {
+  const isMobile = useResize();
+
   const [inputValue, setInputValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   const dispatch = useDispatch();
   const { isOpen, modalType, modalProps } = useSelector((state) => state.modal);
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -25,14 +30,16 @@ const Navbar = () => {
       )}
       <header className="flex justify-between items-center p-4 h-[88px]">
         <Link to="/">
-          <span className="text-4xl font-semibold">My Movie</span>
+          <span className="text-4xl font-semibold mx-2">My Movie</span>
         </Link>
-        <div className="flex items-center gap-3 w-2/5">
+        <div className={`w-2/5 ${isMobile ? "hidden" : "block"}`}>
           <SearchInput
             setIsSearchOpen={setIsSearchOpen}
             inputValue={inputValue}
             setInputValue={setInputValue}
           />
+        </div>
+        <div className="flex items-center gap-3">
           <img
             src={Like}
             onClick={() =>
@@ -42,11 +49,16 @@ const Navbar = () => {
                   modalProps: {
                     title: "찜한 영화 목록",
                     direction: "right",
-                    // itemList: likeList,
                   },
                 })
               )
             }
+            className="cursor-pointer"
+          />
+          <img
+            src={User}
+            onClick={() => navigate("/signin")}
+            className="cursor-pointer"
           />
           <ToggleButton />
         </div>
