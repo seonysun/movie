@@ -13,7 +13,7 @@ export const options = {
   },
 };
 
-const useFetch = (url) => {
+const useFetch = (url, deps) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -30,7 +30,7 @@ const useFetch = (url) => {
       }
     };
     fetchData();
-  }, [url]);
+  }, [url, deps]);
 
   return { data, loading };
 };

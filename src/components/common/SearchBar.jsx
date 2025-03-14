@@ -1,25 +1,16 @@
 import useDebouncedValue from "../../hooks/useDebouncedValue";
-import { API_URL, IMG_URL } from "../../constants/config";
+import { IMG_URL } from "../../constants/config";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { options } from "../../hooks/useFetch";
+import useFetch from "../../hooks/useFetch";
 
 const SearchBar = ({ inputValue, setInputValue, setIsSearchOpen }) => {
   const navigate = useNavigate();
 
   const debouncedInput = useDebouncedValue(inputValue, 500);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(
-        `${API_URL}search/movie?query=${debouncedInput}`,
-        options
-      );
-      setData(response.data);
-    };
-    fetchData();
-  }, [debouncedInput]);
+  const { data } = useFetch(
+    `search/movie?query=${debouncedInput}`,
+    debouncedInput
+  );
 
   return (
     <ul className="flex gap-2">
