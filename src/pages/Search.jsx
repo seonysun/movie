@@ -14,12 +14,11 @@ const Search = () => {
   return (
     <main className="px-16">
       <p className="text-xl">
-        <span className="font-bold text-2xl text-white bg-purple px-3 py-1 rounded-lg">
+        <span className="text-purple font-semibold text-2xl">
           {searchParams.get("movie")}
         </span>
-        &nbsp;로{" "}
-        <span className="text-purple text-2xl">{data.total_results}</span>
-        &nbsp;개의 영화를 찾았습니다.
+        로 <span className="font-semibold text-2xl">{data.total_results}</span>
+        개의 영화를 찾았습니다.
       </p>
       <ul className="flex flex-wrap mt-6 justify-center gap-4">
         {data.results?.length > 0 ? (
