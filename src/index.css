@@ -11,3 +11,18 @@
     @apply bg-dark-main text-white;
   }
 }
+
+@layer components {
+  .btn-purple {
+    @apply bg-purple hover:bg-purple-hover text-white text-lg font-semibold rounded-lg py-1 px-2;
+  }
+  .btn-purple-line {
+    @apply border-2 border-purple hover:bg-purple hover:text-white rounded-lg p-1;
+  }
+  .btn-yellow {
+    @apply bg-yellow hover:bg-yellow-hover text-white font-semibold rounded-lg py-1 px-2;
+  }
+  .btn-blue {
+    @apply bg-blue hover:bg-blue-hover text-white font-semibold rounded-lg py-1 px-2;
+  }
+}

@@ -23,6 +23,14 @@ export default {
           hover: "#4f4e4e",
           light: "#9c9c9c",
         },
+        yellow: {
+          DEFAULT: "#facc15",
+          hover: "#eab308",
+        },
+        blue: {
+          DEFAULT: "#007aff",
+          hover: "#0066cc",
+        },
       },
       animation: {
         spark: "spark 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite",
