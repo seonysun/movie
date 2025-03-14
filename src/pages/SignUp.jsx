@@ -2,8 +2,11 @@ import { useState } from "react";
 import Input from "../components/common/Input";
 import { useSupabaseAuth } from "../supabase";
 import useFormValidation from "../hooks/useFormValidation";
+import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const [values, setValues] = useState({
     email: "",
     name: "",
@@ -27,13 +30,15 @@ const SignUpForm = () => {
   const handleSignUp = async (e) => {
     e.preventDefault();
 
-    const { email, password, name } = values;
-    const userInfo = await signUp({ email, password, name });
-    console.log(userInfo);
+    const { email, password, name: userName } = values;
+    await signUp({ email, password, userName });
+    alert("정상적으로 가입 신청되었습니다. 메일을 확인해주세요!");
+
+    navigate("/signin");
   };
 
   return (
-    <div className="flex flex-col items-center h-screen mt-[8%]">
+    <div className="flex flex-col items-center h-screen mt-[5%]">
       <p className="text-3xl font-semibold mb-4">회원가입</p>
       <form
         onSubmit={handleSignUp}

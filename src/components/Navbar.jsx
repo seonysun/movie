@@ -7,18 +7,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { modalSlice } from "../redux/modalSlice";
 import SideModal from "./SideModal";
 import useResize from "../hooks/useResize";
-import { User, Like } from "../assets/icons";
+import { User, Like, Logout } from "../assets/icons";
+import { useSupabaseAuth } from "../supabase";
+import { loginSlice } from "../redux/loginSlice";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const isMobile = useResize();
 
   const [inputValue, setInputValue] = useState("");
   const [isSearchOpen, setIsSearchOpen] = useState(false);
 
-  const dispatch = useDispatch();
   const { isOpen, modalType, modalProps } = useSelector((state) => state.modal);
+  const login = useSelector((state) => state.login);
 
-  const navigate = useNavigate();
+  const { logout } = useSupabaseAuth();
+  const handleLogout = () => {
+    alert("로그아웃 되었습니다.");
+
+    dispatch(loginSlice.actions.logout());
+    logout();
+
+    navigate("/");
+  };
 
   return (
     <>
@@ -55,11 +68,19 @@ const Navbar = () => {
             }
             className="cursor-pointer"
           />
-          <img
-            src={User}
-            onClick={() => navigate("/signin")}
-            className="cursor-pointer"
-          />
+          {login.isLogin ? (
+            <img
+              src={Logout}
+              onClick={handleLogout}
+              className="cursor-pointer"
+            />
+          ) : (
+            <img
+              src={User}
+              onClick={() => navigate("/signin")}
+              className="cursor-pointer"
+            />
+          )}
           <ToggleButton />
         </div>
       </header>
