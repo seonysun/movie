@@ -4,7 +4,7 @@ import { useSupabaseAuth } from "../supabase";
 import { useState } from "react";
 import useFormValidation from "../hooks/useFormValidation";
 import { useDispatch } from "react-redux";
-import { userLogin } from "../redux/loginSlice";
+import { loginSlice } from "../redux/loginSlice";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -31,11 +31,11 @@ const SignIn = () => {
     e.preventDefault();
 
     const { email, password } = values;
-    const userInfo = await login({ email, password });
-    alert(`${userInfo.user.userName}님 로그인 되었습니다!`);
+    await login({ email, password });
 
-    const user = await getUserInfo();
-    dispatch(userLogin(user));
+    const userInfo = await getUserInfo();
+    dispatch(loginSlice.actions.login(userInfo));
+    alert(`${userInfo.user.userName}님 로그인 되었습니다!`);
 
     navigate("/");
   };
@@ -70,10 +70,10 @@ const SignIn = () => {
         </button>
       </form>
       <div className="my-2 flex w-1/3 items-center gap-2">
-        <button onClick={() => loginWithGoogle} className="btn-yellow w-full">
+        <button onClick={() => loginWithKakao()} className="btn-yellow w-full">
           Kakao
         </button>
-        <button onClick={() => loginWithKakao} className="btn-blue w-full">
+        <button onClick={() => loginWithGoogle()} className="btn-blue w-full">
           Google
         </button>
       </div>
