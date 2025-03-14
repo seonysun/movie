@@ -1,14 +1,25 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import { useSupabaseAuth } from "./supabase";
+import { loginSlice } from "./redux/loginSlice";
+import { useDispatch } from "react-redux";
 
 const Detail = lazy(() => import("./pages/Detail"));
 const Search = lazy(() => import("./pages/Search"));
 
 function App() {
+  const dispatch = useDispatch();
+  const { getUserInfo } = useSupabaseAuth();
+
+  useEffect(() => {
+    const userInfo = getUserInfo();
+    dispatch(loginSlice.actions.login(userInfo));
+  });
+
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Routes>
