@@ -16,9 +16,15 @@ function App() {
   const { getUserInfo } = useSupabaseAuth();
 
   useEffect(() => {
-    const userInfo = getUserInfo();
-    dispatch(loginSlice.actions.login(userInfo));
-  });
+    const fetchUserInfo = async () => {
+      const userInfo = await getUserInfo();
+      if (userInfo?.user) {
+        dispatch(loginSlice.actions.login(userInfo));
+      }
+    };
+
+    fetchUserInfo();
+  }, []);
 
   return (
     <Suspense fallback={<div>loading...</div>}>
