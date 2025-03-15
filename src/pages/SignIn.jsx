@@ -40,6 +40,14 @@ const SignIn = () => {
     navigate("/");
   };
 
+  const handleSocialLogin = async (provider) => {
+    if (provider === "google") {
+      await loginWithGoogle();
+    } else if (provider === "kakao") {
+      await loginWithKakao();
+    }
+  };
+
   return (
     <div className="flex flex-col items-center h-screen mt-[5%]">
       <p className="text-3xl font-semibold mb-4">로그인</p>
@@ -70,10 +78,16 @@ const SignIn = () => {
         </button>
       </form>
       <div className="my-2 flex w-1/3 items-center gap-2">
-        <button onClick={() => loginWithKakao()} className="btn-yellow w-full">
+        <button
+          onClick={() => handleSocialLogin("kakao")}
+          className="btn-yellow w-full"
+        >
           Kakao
         </button>
-        <button onClick={() => loginWithGoogle()} className="btn-blue w-full">
+        <button
+          onClick={() => handleSocialLogin("google")}
+          className="btn-blue w-full"
+        >
           Google
         </button>
       </div>
