@@ -53,28 +53,30 @@ const Navbar = () => {
           />
         </div>
         <div className="flex items-center gap-3">
-          <span>{login.user.userName}님</span>
-          <img
-            src={Like}
-            onClick={() =>
-              dispatch(
-                modalSlice.actions.openModal({
-                  modalType: "side",
-                  modalProps: {
-                    title: "찜한 영화 목록",
-                    direction: "right",
-                  },
-                })
-              )
-            }
-            className="cursor-pointer"
-          />
           {login.isLogin ? (
-            <img
-              src={Logout}
-              onClick={handleLogout}
-              className="cursor-pointer"
-            />
+            <>
+              <span>{login.user.userName}님</span>
+              <img
+                src={Like}
+                onClick={() =>
+                  dispatch(
+                    modalSlice.actions.openModal({
+                      modalType: "side",
+                      modalProps: {
+                        title: "찜한 영화 목록",
+                        direction: "right",
+                      },
+                    })
+                  )
+                }
+                className="cursor-pointer"
+              />
+              <img
+                src={Logout}
+                onClick={handleLogout}
+                className="cursor-pointer"
+              />
+            </>
           ) : (
             <img
               src={User}
