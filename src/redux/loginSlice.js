@@ -13,7 +13,7 @@ export const loginSlice = createSlice({
     },
     login(state, action) {
       state.isLogin = true;
-      state.user = action.payload;
+      state.user = action.payload.user;
     },
   },
 });

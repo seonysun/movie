@@ -53,6 +53,7 @@ const Navbar = () => {
           />
         </div>
         <div className="flex items-center gap-3">
+          <span>{login.user.userName}님</span>
           <img
             src={Like}
             onClick={() =>
