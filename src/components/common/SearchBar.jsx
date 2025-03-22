@@ -29,7 +29,7 @@ const SearchBar = ({ inputValue, setInputValue, setIsSearchOpen }) => {
             >
               <div className="overflow-hidden w-full rounded-lg">
                 <img
-                  src={`${IMG_URL}original${movie.poster_path}`}
+                  src={`${IMG_URL}w500${movie.poster_path}`}
                   alt={movie.title}
                   className="w-full h-48 transition-transform duration-300 hover:scale-110"
                 />

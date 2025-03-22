@@ -16,7 +16,7 @@ const MovieCard = memo(({ movie }) => {
       </span>
       <div className="overflow-hidden h-[300px] rounded-lg">
         <img
-          src={`${IMG_URL}original${movie.poster_path}`}
+          src={`${IMG_URL}w500${movie.poster_path}`}
           alt={movie.title}
           className="w-full h-full transition-transform duration-300 group-hover:scale-110"
         />

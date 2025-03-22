@@ -22,7 +22,7 @@ const MovieDetail = memo(({ movie }) => {
       </div>
       <div className={`flex gap-5 ${isMobile ? "flex-col" : ""}`}>
         <img
-          src={`${IMG_URL}original${movie.poster_path}`}
+          src={`${IMG_URL}w500${movie.poster_path}`}
           alt={movie.title}
           className={isMobile ? "w-full" : "w-1/2"}
         />

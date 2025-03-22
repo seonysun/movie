@@ -28,7 +28,7 @@ const MovieSwipe = () => {
       {data.results?.map((movie) => (
         <SwiperSlide key={movie.id}>
           <img
-            src={`${IMG_URL}original${movie.backdrop_path}`}
+            src={`${IMG_URL}w500${movie.backdrop_path}`}
             alt={movie.title}
             className="w-full h-[500px] object-cover"
           />
