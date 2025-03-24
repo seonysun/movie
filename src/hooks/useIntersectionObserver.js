@@ -12,7 +12,7 @@ const useIntersectionObserver = ({ hasNextPage, fetchData }) => {
           fetchData();
         }
       },
-      { threshold: 1.0 } //요소가 100% 다 보일때 감지
+      { threshold: 0.5 } //요소가 100% 다 보일때 감지
     );
 
     if (observerRef.current) observer.observe(observerRef.current);
