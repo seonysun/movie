@@ -9,5 +9,6 @@ export const instance = axios.create({
   },
   params: {
     language: "ko",
+    include_adult: false,
   },
 });

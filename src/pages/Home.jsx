@@ -5,22 +5,21 @@ import useFetchInfinite from "../hooks/useFetchInfinite";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const Home = () => {
-  const { data, loading, hasNextPage, fetchData } =
-    useFetchInfinite("movie/popular");
+  const { data, hasNextPage, fetchData } = useFetchInfinite("movie/popular");
   const observerRef = useIntersectionObserver({ hasNextPage, fetchData });
-
-  if (loading) return <CardFallback num={12} />;
 
   return (
     <>
       <MovieSwipe />
-      <ul className="flex flex-wrap mt-4 justify-center gap-4">
-        {data
-          ?.filter((el) => el.adult === false)
-          .map((movie) => (
-            <MovieCard key={movie.id} movie={movie} />
-          ))}
-      </ul>
+      <main className="px-[7%]">
+        <ul className="flex flex-wrap mt-4 gap-6">
+          {data
+            ?.filter((el) => el.adult === false)
+            .map((movie) => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
+        </ul>
+      </main>
       <div ref={observerRef} className="h-3" />
     </>
   );

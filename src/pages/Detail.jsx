@@ -15,7 +15,7 @@ const Detail = () => {
       <img
         src={`${IMG_URL}w500${data.backdrop_path}`}
         alt="background image"
-        className="absolute left-0 blur -z-10 brightness-50"
+        className="absolute left-0 blur -z-10 brightness-50 w-full"
       />
       <MovieDetail movie={data} />
     </main>
