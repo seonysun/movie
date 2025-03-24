@@ -19,11 +19,14 @@ const MovieCard = memo(({ movie }) => {
       <div className="overflow-hidden rounded-lg aspect-[2/3]">
         <img
           ref={imgRef}
-          src="/src/assets/images/defaultImg.png"
+          src="../../assets/images/defaultImg.png"
           data-src={`${IMG_URL}w500${movie.poster_path}`}
           alt={movie.title}
           onError={(e) => {
-            e.currentTarget.src = "/src/assets/images/defaultImg.png";
+            if (!e.currentTarget.dataset.failed) {
+              e.currentTarget.dataset.failed = true;
+              e.currentTarget.src = "../../assets/images/defaultImg.png";
+            }
           }}
           className="w-full h-full transition-transform duration-300 group-hover:scale-110"
         />
