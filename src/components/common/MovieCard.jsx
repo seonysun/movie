@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { IMG_URL } from "../../constants/config.js";
 import FavoriteButton from "./FavoriteButton.jsx";
 import useLazyImage from "../../hooks/useLazyImage.js";
+import defaultImg from "../../assets/images/defaultImg.png";
 
 const MovieCard = memo(({ movie }) => {
   const navigate = useNavigate();
@@ -19,13 +20,13 @@ const MovieCard = memo(({ movie }) => {
       <div className="overflow-hidden rounded-lg aspect-[2/3]">
         <img
           ref={imgRef}
-          src="/src/assets/images/defaultImg.png"
+          src={defaultImg}
           data-src={`${IMG_URL}w500${movie.poster_path}`}
           alt={movie.title}
           onError={(e) => {
             if (!e.currentTarget.dataset.failed) {
               e.currentTarget.dataset.failed = true;
-              e.currentTarget.src = "/src/assets/images/defaultImg.png";
+              e.currentTarget.src = { defaultImg };
             }
           }}
           className="w-full h-full transition-transform duration-300 group-hover:scale-110"
